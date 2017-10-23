@@ -1,6 +1,6 @@
 import os
 
-from tools import alerts
+from DeepOrg.tools import alerts
 
 
 def init(save_result_path, model_name):

@@ -2,7 +2,7 @@ from keras import applications
 from keras.layers import Dense, Dropout, GlobalAveragePooling2D, concatenate
 from keras.models import Model
 
-from models import model_logger
+from DeepOrg.models import model_logger
 
 img_channels = 3
 
