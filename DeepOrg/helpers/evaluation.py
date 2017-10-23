@@ -2,7 +2,7 @@ from keras.utils import np_utils
 from sklearn.metrics import classification_report, confusion_matrix
 
 
-def evaluate(X_test, y_test, nb_classes, model, logging):
+def evaluate(X_test, y_test, nb_classes, model, logging, logging_msg):
     # pred = np.empty(y_test.shape[0], dtype="uint32")
     pred = model.predict(X_test).argmax(axis=-1)
     # pred = model.predict_generator(data_test_generator(), steps=X_test.shape[0] // batch_size)
@@ -18,5 +18,5 @@ def evaluate(X_test, y_test, nb_classes, model, logging):
     score = model.evaluate(X_test, Y_test)
     # score = model.evaluate_generator(data_test_generator(), steps=X_test.shape[0] // batch_size)
     logging.info(score)
-    logging.info('\n' + classification_report(Y_test, PRED))
-    logging.info('\n' + confusion_matrix(y_test, pred))
+    logging_msg.info(classification_report(Y_test, PRED))
+    logging_msg.info(confusion_matrix(y_test, pred))
