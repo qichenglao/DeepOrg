@@ -14,6 +14,7 @@ def init(save_result_path, model_name):
         if choice:
             # delete all previous files
             for file in os.listdir(save_result_path):
+                # todo: remove files more carefully
                 if file.startswith(model_name):
                     os.remove(os.path.join(save_result_path, file))
         else:

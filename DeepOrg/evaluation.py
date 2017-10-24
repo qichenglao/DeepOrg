@@ -3,6 +3,10 @@ from sklearn.metrics import classification_report, confusion_matrix
 
 
 def evaluate(X_test, y_test, nb_classes, model, batch_size, logging, logging_msg):
+    logging.info('################################')
+    logging.info('evaluating...')
+    logging.info('################################')
+
     # pred = np.empty(y_test.shape[0], dtype="uint32")
     pred = model.predict(X_test, batch_size=batch_size).argmax(axis=-1)
     # pred = model.predict_generator(data_test_generator(), steps=X_test.shape[0] // batch_size)

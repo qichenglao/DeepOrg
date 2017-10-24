@@ -3,7 +3,7 @@ import numpy as np
 from keras import backend as K
 
 
-def summary(model, model_name, logging_msg):
+def log_summary(model, model_name, logging_msg):
     logging_msg.info('################################')
     logging_msg.info('Model %s Summary:' % model_name)
     logging_msg.info('################################')
@@ -11,7 +11,7 @@ def summary(model, model_name, logging_msg):
     # print(model.summary(), file=output)
 
 
-def layer_list(model, model_name, logging_msg):
+def log_layer_list(model, model_name, logging_msg):
     logging_msg.info('################################')
     logging_msg.info('Model %s Layers:' % model_name)
     logging_msg.info('################################')
@@ -19,7 +19,7 @@ def layer_list(model, model_name, logging_msg):
         logging_msg.info(str(i) + ' ' + layer.name)
 
 
-def parameter_numbers(model, model_name, logging_msg):
+def log_parameter_numbers(model, model_name, logging_msg):
     trainable_count = int(np.sum([K.count_params(p) for p in set(model.trainable_weights)]))
     non_trainable_count = int(np.sum([K.count_params(p) for p in set(model.non_trainable_weights)]))
 
