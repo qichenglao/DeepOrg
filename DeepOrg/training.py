@@ -3,8 +3,8 @@ from keras.callbacks import CSVLogger, ModelCheckpoint, EarlyStopping
 from DeepOrg.models import model_logger
 
 
-def train(model, model_name, optimizer, loss, save_file_name, data_generator_train, data_generator_val,
-          total_train_size, total_val_size, nb_epoch, batch_size, logging, logging_msg):
+def train(model, model_name, save_file_name, logging, logging_msg, total_train_size, total_val_size,
+          data_generator_train, data_generator_val, batch_size, nb_epoch, loss, optimizer, early_stop):
 
     model_logger.log_parameter_numbers(model, model_name, logging_msg)
 
@@ -22,8 +22,14 @@ def train(model, model_name, optimizer, loss, save_file_name, data_generator_tra
         logging.info('training starts...')
     logging.info('################################')
 
-    history = model.fit_generator(data_generator_train, steps_per_epoch=total_train_size // batch_size, epochs=nb_epoch, verbose=1,
-                                  validation_data=data_generator_val, validation_steps=total_val_size // batch_size,
-                                  callbacks=[csv_logger, early_stopper, model_checkpoint])
+    if early_stop:
+        history = model.fit_generator(data_generator_train, steps_per_epoch=total_train_size // batch_size,
+                                      epochs=nb_epoch, verbose=1,
+                                      validation_data=data_generator_val, validation_steps=total_val_size // batch_size,
+                                      callbacks=[csv_logger, early_stopper, model_checkpoint])
+    else:
+        history = model.fit_generator(data_generator_train, steps_per_epoch=total_train_size // batch_size, epochs=nb_epoch, verbose=1,
+                                      validation_data=data_generator_val, validation_steps=total_val_size // batch_size,
+                                      callbacks=[csv_logger, model_checkpoint])
 
     return history

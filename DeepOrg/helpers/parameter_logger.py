@@ -1,5 +1,5 @@
-def log_info(nb_classes, img_rows, img_cols, img_channels, batch_size, nb_epoch_top, nb_epoch,
-             total_train_size, total_val_size, total_test_size, logging_msg):
+def log_info(nb_classes, img_rows, img_cols, img_channels, batch_size, nb_epoch,
+             total_train_size, total_val_size, total_test_size, logging_msg, nb_epoch_top=None):
     logging_msg.info('############################################################################')
     logging_msg.info('nb_classes: %d \t image info: %dX%d, %d' % (nb_classes, img_rows, img_cols, img_channels))
     if nb_epoch_top is None:
