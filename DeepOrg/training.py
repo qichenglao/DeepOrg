@@ -5,7 +5,7 @@ from keras.callbacks import CSVLogger, ModelCheckpoint, EarlyStopping
 from DeepOrg.models import model_logger
 
 
-def train(model, model_name, save_file_name, logging, logging_msg, total_train_size, total_val_size,
+def train(model, model_name, save_file_name, logging, logging_msg, steps_train, steps_val,
           data_generator_train, data_generator_val, batch_size, nb_epoch, loss, optimizer, early_stop):
 
     model_logger.log_parameter_numbers(model, model_name, logging_msg)
@@ -24,8 +24,8 @@ def train(model, model_name, save_file_name, logging, logging_msg, total_train_s
         logging.info('training starts...')
     logging.info('################################')
 
-    steps_train = int(np.ceil(total_train_size / float(batch_size)))
-    steps_val = int(np.ceil(total_val_size / float(batch_size)))
+    # steps_train = int(np.ceil(total_train_size / float(batch_size)))
+    # steps_val = int(np.ceil(total_val_size / float(batch_size)))
 
     if early_stop:
         history = model.fit_generator(data_generator_train, steps_per_epoch=steps_train, epochs=nb_epoch, verbose=1,
