@@ -6,12 +6,12 @@ from DeepOrg.models import model_logger
 
 
 def train(model, model_name, save_file_name, logging, logging_msg, steps_train, steps_val,
-          data_generator_train, data_generator_val, batch_size, nb_epoch, loss, optimizer, early_stop):
+          data_generator_train, data_generator_val, batch_size, nb_epoch, loss, optimizer, early_stop, loss_weights=None):
 
     model_logger.log_parameter_numbers(model, model_name, logging_msg)
 
     # we need to recompile the model for these modifications to take effect
-    model.compile(loss=loss, optimizer=optimizer, metrics=['accuracy'])
+    model.compile(loss=loss, loss_weights=loss_weights, optimizer=optimizer, metrics=['accuracy'])
 
     early_stopper = EarlyStopping(monitor='val_acc', min_delta=0.001, patience=10)
     csv_logger = CSVLogger(save_file_name + '.csv')
