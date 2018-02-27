@@ -1,4 +1,3 @@
-from theano import tensor as T
 from keras.models import Model, Sequential
 from keras.layers import Flatten, Dense, Dropout, Reshape, Permute, Activation, Input, merge, Lambda, BatchNormalization
 from keras.layers.convolutional import Convolution2D, MaxPooling2D, ZeroPadding2D
