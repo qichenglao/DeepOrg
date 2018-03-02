@@ -1,8 +1,12 @@
 certifi
 cycler
+h5py
 Keras
 matplotlib
 numpy
+opencv-python
+Pillow
+pydot
 pyparsing
 python-dateutil
 pytz
